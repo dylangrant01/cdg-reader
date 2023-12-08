@@ -3,10 +3,10 @@ A package for climate researchers to check for information on the NCAR Climate D
 
 
 ## Installation 
-The easiest way to install the latest version of `ncar_data_guide` is using `pip':  
+The easiest way to install the latest version of `cdg-reader` is using `pip':  
 
 ```
-pip install ncar_data_guide
+pip install cdg-reader
 ```
 
 ## Documentation 
