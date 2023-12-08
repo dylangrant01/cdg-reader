@@ -1,4 +1,4 @@
-# ncar_data_guide
+# cdg-reader
 A package for climate researchers to check for information on the NCAR Climate Data Guide to compare to a user netCDF file.
 
 
