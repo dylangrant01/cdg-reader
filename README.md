@@ -3,10 +3,10 @@ A package for climate researchers to check for information on the NCAR Climate D
 
 
 ## Installation 
-The easiest way to install the latest version of `cdg_reader` is using `pip':  
+The easiest way to install the latest version of `cdg-reader` is using `pip':  
 
 ```
-pip install cdg-reader
+pip install cdg_reader
 ```
 
 ## Documentation 
@@ -25,10 +25,10 @@ This package utilizes the xarray environment to help access key information and 
 'ncar_data_guide' will return up to (3) results from the database relevant to your dataset.
 
 ```
-   import ncar_data_guide as ndg
+   import cdg_reader as cdg
     
    # Use your netCDF file to search the guide for relevant information.
-   ndg.check_NCAR('file.nc')
+   cdg.check_NCAR('file.nc')
 
 ```
 
