@@ -12,7 +12,17 @@ import xarray as xr
 
 
 def read_netcdf(file):
-    """Read in netCDF file to xarray object"""
+    """Read in netCDF file to xarray object
+    
+    Parameters
+    ----------
+    file (string) : string netCDF file location
+    
+    Returns
+    -------
+    xr.open_dataset(file) (xarray object) : NetCDF file converted to xarray object
+    
+    """
 
     return xr.open_dataset(file)
 
@@ -22,11 +32,11 @@ def get_search_words(root):
     
     Parameters
     ----------
-    root : xarray object
+    root (xarray object) : xarray object of the user NetCDF file
     
     Returns
     -------
-    search_list_unique : List of key terms to search the NCAR database
+    search_list_unique (list of strings) : List of key terms to search the NCAR database
     
     """
     
@@ -123,12 +133,12 @@ def search_NCAR(terms,xarr_file):
     
     Parameters
     ----------
-    terms : List of search terms to search the NCAR database
-    xarr_file : xarray object of original netCDF file
+    terms (list of strings) : List of search terms to search the NCAR database
+    xarr_file (xarray object) : xarray object of original netCDF file
     
     Returns
     -------
-    Dictionary of result attributes from the NCAR database
+    filter_results(xarr_file,data,terms) (list of dictionaries) : Ordered list of result attributes from the NCAR CDG database
     
     """
     
@@ -137,14 +147,24 @@ def search_NCAR(terms,xarr_file):
     #If the search provides no results, go to the next term
     for i in terms:
         xml_data = get_xml_file(i)
-        #data = xml_to_dict("output.xml")
         data = xml_to_dict(xml_data)
         if len(data)>0:
             break
     
     
     def check_time_similarity(xarr,xml_input):
-        """Check the similarity of the time bounds of the netCDF file with the NCAR database results"""
+        """Check the similarity of the time bounds of the netCDF file with the NCAR database results
+        
+        Parameters
+        ----------
+        xarr (xarray object) : xarray object of user NetCDF file
+        xml_input (list of dictionaries) : list of dictionaries pulled from NCAR CDG database from search terms
+        
+        Returns
+        -------
+        results (list of dictionaries) : Revised list of dictionaries that have a time parameter within 50 years of the original dataset in the user NetCDF file.
+        
+        """
         
         results = xml_input.copy()
         
@@ -176,7 +196,18 @@ def search_NCAR(terms,xarr_file):
     
     
     def check_key_terms(terms,results):
-        """Check if the NCAR database results contain multiple of the search terms"""
+        """Check if the NCAR database results contain multiple of the search terms
+        
+        Parameters
+        ----------
+        terms (list of strings) : list of search terms derived from the user NetCDF file
+        results (list of dictionaries) : list of dictionaries pulled from NCAR CDG database from search terms
+        
+        Returns
+        -------
+        check_dict (dictionary) : Dictionary of counts of how many words from the terms input are included in each of the results input
+        
+        """
     
         check_dict = {i: 0 for i in range(len(results))}
 
@@ -192,9 +223,23 @@ def search_NCAR(terms,xarr_file):
         return check_dict
 
     
-    #Call the filtering functions and sorts the results from the most to least important.
-    #Return 3 results max
+    
     def filter_results(xarr,results,terms):
+        """Call the filtering functions and sorts the results from the most to least important. Return 3 results max.
+        
+        Parameters
+        ----------
+        xarr (xarray object) : xarray object of user NetCDF file
+        results (list of dictionaries) : list of dictionaries pulled from NCAR CDG database from search terms
+        terms (list of strings) : list of search terms derived from the user NetCDF file
+        
+        Returns
+        -------
+        filtered_list (list of dictionaries) : List of dictionaries of search results ordered by how many key terms from the 
+        check_key_terms function each result contains as well as filtered for time similarity per the 
+        check_time_similarity function.
+        
+        """
         
         check_results = check_time_similarity(xarr,results)
         key_list = check_key_terms(terms,check_results)
@@ -218,7 +263,17 @@ def search_NCAR(terms,xarr_file):
 
 
 def xml_to_dict(file):
-    """Read in the xml file result from the NCAR database and return it as a list of dictionaries"""
+    """Read in the xml file result from the NCAR database and return it as a list of dictionaries
+    
+    Parameters
+    ----------
+    file (string) : xml file converted to a string - search results from NCAR CDG website returned as a string
+    
+    Returns
+    -------
+    data dict (list of dictionaries) : List of dictionaries of search results, converted from the xml string
+    
+    """
     
     #Read in xml
     tree = et.fromstring(file)
@@ -258,7 +313,17 @@ def xml_to_dict(file):
 
 
 def get_xml_file(search_term):
-    """Perform a search at the NCAR climate data guide and return a python xml text object"""
+    """Perform a search at the NCAR climate data guide and return a python xml text object
+    
+    Parameters
+    ----------
+    search_term (string) : search term derived from the user NetCDF file
+    
+    Returns
+    -------
+    xml_content (string) : xml file converted to string - search results from NCAR CDG website returned as a string
+    
+    """
     
     url = f"https://climatedataguide.ucar.edu/xarray?title={search_term}"
 
@@ -280,7 +345,13 @@ def get_xml_file(search_term):
     
 
 def print_results(res_list):
-    """Print the results from the NCAR database to the terminal"""
+    """Print the results from the NCAR database to the terminal
+    
+    Parameters
+    ----------
+    res_list (list of dictionaries) : list of dictionaries of filtered results from the NCAR CDG database
+    
+    """
     
     if type(res_list) is not int and len(res_list)>0:
         print("\n\nNCAR Helpful Resources")
@@ -304,7 +375,7 @@ def check_NCAR(netCDF_file):
 
     Parameters
     ----------
-    netCDF_file : string path of netCDF file
+    netCDF_file (string): string path of netCDF file
     """
     
     #Read in netCDF file
