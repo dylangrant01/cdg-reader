@@ -372,7 +372,7 @@ def print_results(res_list):
 
 class cdg_reader:
 
-    def check_NCAR(netCDF_file):
+    def check_NCAR(self,netCDF_file):
         """Print to the screen up to (3) pages from the NCAR Climate Data Guide with relevant data to the netCDF file
     
         Parameters

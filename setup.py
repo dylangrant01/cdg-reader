@@ -6,13 +6,13 @@ from distutils.core import setup
 setup(
   name = 'cdg_reader',
   packages = ['cdg_reader'],
-  version = '0.1',
+  version = '0.3',
   license='MIT',
   description = 'Check the NCAR Climate Data Guide for information relevant to your netCDF data file',
   author = 'YDylan Grant',
   author_email = 'dg3311@columbia.edu',
   url = 'https://github.com/dylangrant01/cdg-reader',
-  download_url = 'https://github.com/dylangrant01/cdg-reader/archive/refs/tags/v_01.tar.gz',
+  download_url = 'https://github.com/dylangrant01/cdg-reader/archive/refs/tags/v03.tar.gz',
   keywords = ['ncar', 'cdg', 'climate', 'guide', 'xarray'],
   install_requires=[            
           'xarray',
