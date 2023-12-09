@@ -25,10 +25,10 @@ This package utilizes the xarray environment to help access key information and 
 'ncar_data_guide' will return up to (3) results from the database relevant to your dataset.
 
 ```
-   import cdg_reader as cdg
+   From cdg_reader import check_NCAR
     
    # Use your netCDF file to search the guide for relevant information.
-   cdg.check_NCAR('file.nc')
+   check_NCAR('your_file.nc')
 
 ```
 
