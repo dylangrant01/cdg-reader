@@ -370,26 +370,26 @@ def print_results(res_list):
     return 0
 
 
-class cdg_reader:
 
-    def check_NCAR(self,netCDF_file):
-        """Print to the screen up to (3) pages from the NCAR Climate Data Guide with relevant data to the netCDF file
+def check_NCAR(netCDF_file):
+    """Print to the screen up to (3) pages from the NCAR Climate Data Guide with relevant data to the netCDF file
+
+    Parameters
+    ----------
+    netCDF_file (string): string path of netCDF file
+    """
     
-        Parameters
-        ----------
-        netCDF_file (string): string path of netCDF file
-        """
-        
-        #Read in netCDF file
-        xarray_data = read_netcdf(netCDF_file)
-        
-        #Use netCDF to find important words in the attributes
-        #These will be used as search terms to NCAR
-        search_list=get_search_words(xarray_data)
-        
-        #Search the NCAR database and return a list of results, including title, key strengths, and key limitations
-        res_list = search_NCAR(search_list,xarray_data)
-        
-        #Print the results
-        print_results(res_list)
+    #Read in netCDF file
+    xarray_data = read_netcdf(netCDF_file)
     
+    #Use netCDF to find important words in the attributes
+    #These will be used as search terms to NCAR
+    search_list=get_search_words(xarray_data)
+    
+    #Search the NCAR database and return a list of results, including title, key strengths, and key limitations
+    res_list = search_NCAR(search_list,xarray_data)
+    
+    #Print the results
+    print_results(res_list)
+    
+
