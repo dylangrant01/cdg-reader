@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: cdg-reader
-Version: 0.4
+Version: 0.5
 Summary: Check the NCAR Climate Data Guide for information relevant to your netCDF data file
 Home-page: https://github.com/dylangrant01/cdg-reader
-Download-URL: https://github.com/dylangrant01/cdg-reader/archive/refs/tags/v04.tar.gz
+Download-URL: https://github.com/dylangrant01/cdg-reader/archive/refs/tags/v05.tar.gz
 Author: YDylan Grant
 Author-email: dg3311@columbia.edu
 License: MIT
