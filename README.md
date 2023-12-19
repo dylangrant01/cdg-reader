@@ -67,3 +67,10 @@ Once the two filter methods are used, the package will print to the terminal up 
  print_results(filtered_list_of_results_from_NCAR)
 
 ```
+
+## Room for Improvement
+
+There are some improvements that can be made to the package. Some suggestions include the below.
+1. Add a URL to the printed results. This would require updating the results that are pulled from the Climate Data Guide to include a URL to the data pages on the website.
+2. Improve search functionality. The package currently searches the Climate Data Guide by compiling a list of key terms from the attributes of the provided NetCDF file and using them to search the titles of data pages on the Climate Data Guide. This could be improved to search other attributes of the pages in the Climate Data Guide database.
+3. Expand search functionality. The package functions well when the attributes of the netCDF file thoroughly document the characteristics of the file. If there is little documentation, the package's function is limited. Expanding the ability to parse the file beyond only the attributes could strengthen the search functionality.
